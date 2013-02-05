@@ -110,7 +110,8 @@ $(document).ready(function () {
 
   var $input = $("input#chord-input");
   // debounce fetchChord function, preventing multiple
-  // simultaneuos runs.
+  // simultaneous runs during keyups. Note that this is diferent
+  // from memoize.
   var debouncedFetchChord = _.debounce(function (callback) {
     fetchChord($input.val(), callback);
   }, 500);
