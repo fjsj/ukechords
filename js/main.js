@@ -16,6 +16,7 @@ var parseChord = function (chord) {
   };
   var root = null;
   var chordType = "major";
+
   for (var i = 0; i < rootNotes.length; i++) {
     if (chord.indexOf(rootNotes[i]) === 0) {
       root = rootNotes[i];
@@ -34,13 +35,17 @@ var parseChord = function (chord) {
       break;
     }
   }
+
   return {
     r: root,
     typ: chordType
   };
 };
 
+var currentChord = 0;
+var chordsSrcs = [];
 var fetchChord = function (chord) {
+  chordsSrcs.length = 0;  //   empties the array
   var parsed = parseChord(chord);
   var params = {
     r: parsed.r,
@@ -56,13 +61,34 @@ var fetchChord = function (chord) {
     success: function (data, textStatus, jqXHR) {
       $(data).find("chord_diag_mini").each(function () {
         var chordImgSrc = $(this).text();
-        $("img#chord").attr('src', chordImgSrc);
+        chordsSrcs.push(chordImgSrc);
       });
+      $("img#chord").attr('src', chordsSrcs[currentChord]);
     },
     error: function (jqXHR, textStatus, errorThrown) {
-      forge.logging.info(errorThrown);
+      //forge.logging.info(errorThrown);
     }
   });
 };
+
+$(document).ready(function () {
+  $("a#prev-chord").click(function () {
+    if (currentChord === 0) {
+      currentChord = chordsSrcs.length;
+    }
+    currentChord -= 1;
+    
+    $("img#chord").attr('src', chordsSrcs[currentChord]);
+    return false;
+  });
+
+  $("a#next-chord").on("click", function () {
+    currentChord += 1;
+    currentChord %= chordsSrcs.length;
+    
+    $("img#chord").attr('src', chordsSrcs[currentChord]);
+    return false;
+  });
+});
 
 fetchChord('C#aug');
