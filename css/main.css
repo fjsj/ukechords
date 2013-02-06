@@ -7,15 +7,37 @@
 
 body {
     background-color: #f4efe6;
-    background-image: url("../img/retina_wood.png");
+    background-image: url(../img/foggy_birds.png);
     background-repeat: repeat;
     color: #8e3102;
+    margin: 0;
+    padding: 0;
 }
 
-h1 {
+.header {
     font-family: "Galindo Regular";
     color: #a52300;
-    text-align: center;
+    /* 
+    To create this nice border effect with GIMP, draw
+    two straight lines and use Filters > Distorts > Ripple.
+    On the Ripple dialog, check Antialiasing and Retain tilability,
+    choose Orientation > Vertical and Wave Type > Sawtooth.
+    After appling the Ripple, check if the tilability is OK by
+    using Filters > Map > Tile. Crop the sides if necessary.
+    */
+    background-image: url(../img/header_border2.png);
+    background-repeat: repeat-x;
+    height: 75px;
+    margin-bottom: 0.5em;
+}
+
+.header h1 {
+    margin-top: 0;
+    padding-top: 0.25em;
+}
+
+.content, .footer {
+    padding: 0.75em;   
 }
 
 .centered {
