@@ -4,20 +4,20 @@
 	"author": "flaviojuvenal@gmail.com",
 	"version": "0.1",
 	"platform_version": "v1.4",
-	"description": "An empty app created by default",
+	"description": "A simple app to get ukulele chord charts",
 	"modules": {
 		"logging": {
 			"level": "DEBUG"
 		},
-		"contact": true,
-		"file": true,
-		"is": true,
-		"media": true,
-		"prefs": true,
+		"contact": false,
+		"file": false,
+		"is": false,
+		"media": false,
+		"prefs": false,
 		"request": {
-			"permissions": ["http://*/*", "https://*/*"]
+			"permissions": ["http://ukulele-chords.com/get?*"]
 		},
-		"tools": true,
+		"tools": false,
 		"reload": true
 	}
 }
