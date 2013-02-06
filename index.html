@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	
+
 	<title>Hello World!</title>
 	
 	<link rel="stylesheet" href="css/bootstrap.min.css" /> <!-- from http://bootswatch.com/united/ -->
@@ -22,31 +22,23 @@
 	</div><!-- /header -->
 
 	<div data-role="content">
+		<p class="centered">Digite o acorde no campo abaixo:</p>
 		<div class="row chord-controls">
 			<a id="prev-chord" class="btn" href="#"><i class="icon-arrow-left"></i></a>
 			<img id="chord" class="chord" src="#">
 			<a id="next-chord" class="btn" href="#"><i class="icon-arrow-right"></i></a>
 			<p><input id="chord-input" type="text"></p>
 		</div>
-		<p>Congratulations on installing Forge!</p>
-		<p>This is an example project built with simple HTML, CSS and JavaScript.</p>
 		
-		<h3>Getting started</h3>
-
-		<p>If you're here, you've probably already seen <a href="http://current-docs.trigger.io/">the Forge documentation</a>.</p>
-		<p>Keep an eye on our <a href="https://trigger.io/cross-platform-application-development-blog/">blog</a> which has regular developer tips and news.</p>
-
-		<h3>Next steps</h3>
-
-		<p>You could try going through <a href="http://current-docs.trigger.io/tutorials/weather/index.html">a tutorial</a>, or looking at <a href="http://current-docs.trigger.io/modules/index.html">available modules</a>.</p>
-		<p>If you have any questions, you can use <a href="http://stackoverflow.com/questions/tagged/trigger.io">StackOverflow</a> or <a href="mailto:support@trigger.io">send us an email</a>.</p>
-
+		<h3>Instruções</h3>
+		<p>Os acordes aceitos são compostos por uma nota fundamental e um tipo. Exemplos notas fundamentais são <code>C</code>, <code>E</code>, <code>F#</code>, <code>Ab</code>. Exemplos de tipos são <code>m</code> para menor e <code>7</code> para sétima. Logo, um lá menor é <code>Am</code>.</p>
+		<p>Todos os valores aceitos para tipos estão listados a seguir: <small>'m', 'aug, 'dim', '7', 'm7', 'maj7', 'm7b5', 'sus2', 'sus4', '7sus4', '6', 'm6', 'add9', 'm9', '9', '11', '13'</small></p>
 	</div><!-- /content -->
 
 	<div data-role="footer">
-		<h4>Get in touch:
-			<a href="mailto:support@trigger.io">support@trigger.io</a>
-		</h4>
+		<h6>Código-fonte disponível
+			<a href="https://github.com/fjsj/ukechords">no GitHub</a>.
+		</h6>
 	</div><!-- /footer -->
 
 </div><!-- /page -->
