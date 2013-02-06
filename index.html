@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
+	<meta charset="utf-8">
+	
 	<title>Hello World!</title>
+	
+	<link rel="stylesheet" href="css/bootstrap.min.css" /> <!-- from http://bootswatch.com/united/ -->
+	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+	<link rel="stylesheet" href="css/main.css" />
 	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="js/underscore-min.js"></script>
 	<script type="text/javascript" src="js/async.js"></script>
@@ -12,14 +18,16 @@
 <div data-role="page">
 
 	<div data-role="header">
-		<h1>Ukulele chords</h1>
+		<h1>ukechords</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">
-		<a id="prev-chord" href="#">&lt;&lt;</a>
-		<img id="chord" src="#">
-		<a id="next-chord" href="#">&gt;&gt;</a>
-		<p><input id="chord-input" type="text"></p>
+		<div class="row chord-controls">
+			<a id="prev-chord" class="btn" href="#"><i class="icon-arrow-left"></i></a>
+			<img id="chord" class="chord" src="#">
+			<a id="next-chord" class="btn" href="#"><i class="icon-arrow-right"></i></a>
+			<p><input id="chord-input" type="text"></p>
+		</div>
 		<p>Congratulations on installing Forge!</p>
 		<p>This is an example project built with simple HTML, CSS and JavaScript.</p>
 		

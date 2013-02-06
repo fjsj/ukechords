@@ -1,0 +1,31 @@
+@font-face {
+    font-family: "Galindo Regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/Galindo-Regular.ttf);
+}
+
+body {
+    background-color: #f4efe6;
+    background-image: url("../img/retina_wood.png");
+    background-repeat: repeat;
+    color: #8e3102;
+}
+
+h1 {
+    font-family: "Galindo Regular";
+    color: #a52300;
+    text-align: center;
+}
+
+.chord-controls {
+    text-align: center;
+}
+
+.chord-controls .chord {
+    border: 1px solid #a04a11;
+}
+
+.chord-controls p {
+    margin-top: 1em;
+}
