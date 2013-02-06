@@ -18,16 +18,21 @@
 <div data-role="page">
 
   <div data-role="header" class="header">
-      <h1 class="centered">ukechords</h1>
+    <h1 class="centered">ukechords</h1>
   </div><!-- /header -->
 
   <div data-role="content" class="content">
-    <p class="centered">Digite o acorde no campo abaixo:</p>
+    <p class="centered"><strong>Digite um acorde no campo abaixo:</strong></p>
     <div class="row chord-controls">
       <a id="prev-chord" class="btn" href="#"><i class="icon-arrow-left"></i></a>
       <img id="chord" class="chord" src="#">
       <a id="next-chord" class="btn" href="#"><i class="icon-arrow-right"></i></a>
-      <p><input id="chord-input" type="text"></p>
+      <p>
+        <div class="input-prepend">
+          <span class="add-on">Acorde:</span>
+          <input id="chord-input" class="input-small" type="text">
+        </div>
+      </p>
     </div>
     
     <h3>Instruções</h3>
