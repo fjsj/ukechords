@@ -1,5 +1,3 @@
-var apiKey = "99cd2175108d157588c04758296d1cfc";
-
 $(document).ready(function () {
   var canvas = document.getElementById('chord');
   var ctx = canvas.getContext('2d');
