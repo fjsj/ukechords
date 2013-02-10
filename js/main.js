@@ -130,6 +130,6 @@ $(document).ready(function () {
     debouncedFetchChord(setChords);
   });
 
-  debouncedFetchChord(setChords);
+  //debouncedFetchChord(setChords);
 });
 
