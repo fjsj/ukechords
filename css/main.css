@@ -45,11 +45,14 @@ body {
 }
 
 .chord-controls {
-    text-align: center;
+    width: 170px;
+    margin: 0 auto;
+    text-align: center
 }
 
 .chord-controls .chord {
     border: 1px solid #a04a11;
+    vertical-align: middle;
 }
 
 .chord-controls p {
