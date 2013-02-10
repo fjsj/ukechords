@@ -126,7 +126,7 @@ var ChordDrawer = (function() {
       // Write offset (if necessary)
       if (offset) {
         ctx.textAlign = 'left';
-        ctx.fillText(offset, 2, 13);
+        ctx.fillText(offset, 2, 20);
       }
   };
   //// End of chordgen-based code.
