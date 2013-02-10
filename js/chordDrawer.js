@@ -1,6 +1,3 @@
-var canvas = document.getElementById('chord');
-var ctx = canvas.getContext('2d');
-
 var ChordDrawer = (function() {
   // ChordDrawer code is based on chordgen Python code from Hans Boldt.
   // Source: http://www.boldts.net/Ukulele/Uke-chords.shtml
@@ -134,17 +131,20 @@ var ChordDrawer = (function() {
   };
   //// End of chordgen-based code.
 
+  var clearChord = function (ctx) {
+    // Draw a white background
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, box_size[0], box_size[1]);
+    ctx.fillStyle = "black";
+  };
+
   var drawChord = function (ctx, namestr, fretstr) {
-    ctx.translate(0.5, 0.5);  // "disable" anti-aliasing. See: http://stackoverflow.com/a/3279863/145349
+    clearChord(ctx);
     makeChordBox(ctx, namestr, fretstr);
   };
 
   return {
+    clearChord: clearChord,
     drawChord: drawChord
   };
 }());
-
-//ChordDrawer.drawChord(ctx, "Gdim", "0101");
-//ChordDrawer.drawChord(ctx, "Am7.1", "5430");
-//ChordDrawer.drawChord(ctx, "B5", "4622");
-ChordDrawer.drawChord(ctx, "C", "0003");
