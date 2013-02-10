@@ -73,16 +73,18 @@ var makeChordBox = function (namestr, fretstr) {
     var barpos = 0;
     if (fretstr[0] == "|") {
         fretstr = fretstr.slice(1);
-        bar = True;
+        bar = true;
     }
 
     // Determine fret positions and offset
     var frets = _(fretstr.split("")).map(function (x) { return parseInt(x, 10); });
-    frets = _(frets).reject(function (x) { return isNaN(x); } );
-    var mn = _.min(frets);
+    var mn = _.min(_(frets).reject(function (x) { return x === 0; }));
     var mx = _.max(frets);
     var diff = mx - mn;
-
+    if (diff > 4) {
+      throw new Error("Fret difference too great for " + namestr);
+    }
+    
     var offset = 0;
     if (mx > 4) {
         offset = mn;
@@ -98,7 +100,7 @@ var makeChordBox = function (namestr, fretstr) {
     ctx.fillText(name, box_size[0] / 2, 8);
     
     // Draw skeleton box
-    drawBox(ctx, diagram_xy, (offset === 0), (diff === 4));
+    drawBox(ctx, (offset === 0), (diff === 4));
         
     // Draw dots at the fret positions
     var string = 1;
@@ -115,7 +117,7 @@ var makeChordBox = function (namestr, fretstr) {
       drawDot(ctx, 3, barpos, _.max([offset - 1, 0]));
       drawDot(ctx, 4, barpos, _.max([offset - 1, 0]));
     }
-
+    
     // Write offset (if necessary)
     if (offset) {
       ctx.textAlign = 'left';
@@ -124,4 +126,7 @@ var makeChordBox = function (namestr, fretstr) {
 };
 
 ctx.translate(0.5, 0.5);  // "disable" anti-aliasing. See: http://stackoverflow.com/a/3279863/145349
-makeChordBox("Gdim", "0101");
+//makeChordBox("Gdim", "0101");
+//makeChordBox("Am7.1", "5430");
+//makeChordBox("B5", "4622");
+makeChordBox("C", "0003");
