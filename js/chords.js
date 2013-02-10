@@ -1,7 +1,7 @@
 // Generated from chords file of chordgen Python code from Hans Boldt.
 // Source: http://www.boldts.net/Ukulele/Uke-chords.shtml
 // Used the following unix script for generation:
-// cat chords | awk 'BEGIN { printf("{") } /^#./ { next } /./ { printf("\"%s\": \"%s\",\n", $1, $2); nl=RT }' | sed '$ s/,$/}/' > chords.json
+// cat chords | awk 'BEGIN { printf("{") } /^#./ { next } /./ { printf("\"%s\": \"%s\",\n", $1, $2); }' | sed '$ s/,$/}/' > chords.json
 
 var ChordDict = {"Ab": "|5343",
 "Ab5": "8846",
