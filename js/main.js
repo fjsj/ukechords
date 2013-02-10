@@ -11,8 +11,8 @@ $(document).ready(function () {
   var drawChord = function (chord) {
     ChordDrawer.drawChord(ctx, chord, ChordDict[chord]);
   };
-  var clearChord = function () {
-
+  var drawUnknown = function () {
+    ChordDrawer.drawUnknown(ctx);
   };
 
   $input.val("C");
@@ -32,7 +32,7 @@ $(document).ready(function () {
       
       drawChord(chord);
     } else {
-      clearChord();
+      drawUnknown();
     }
   });
   $input.change();

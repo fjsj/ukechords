@@ -143,8 +143,17 @@ var ChordDrawer = (function() {
     makeChordBox(ctx, namestr, fretstr);
   };
 
+  var drawUnknown = function (ctx) {
+    clearChord(ctx);
+
+    // Draw "???" text in the center
+    ctx.font = '12px Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText("???", box_size[0] / 2, box_size[1] / 2);
+  };
+
   return {
-    clearChord: clearChord,
-    drawChord: drawChord
+    drawChord: drawChord,
+    drawUnknown: drawUnknown
   };
 }());
