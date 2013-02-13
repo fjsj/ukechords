@@ -1,5 +1,3 @@
-#notesStr = (ns) -> (ns).map((x) -> x.name)
-
 permutations = (input) ->
   used = []
   permArr = []
@@ -16,7 +14,7 @@ permutations = (input) ->
   return permArr
 
 tuning = ["G4", "C4", "E4", "A4"]
-chord = "Cmaj7"
+chord = "C"
 tuningNotes = (teoria.note(n) for n in tuning)
 chordNotes = teoria.chord(chord, 4).notes
 if chordNotes.length == 4
@@ -26,12 +24,13 @@ else
   
 # Find all chord combinations, ignoring those with a fret distance >= 4
 fretsVars = []
-
+tNoteScales = (tNote.scale("chromatic") for tNote in tuningNotes)
 for chordNotes in chordNotesVars
-  for p in permutations(chordNotes)
-    diff = _(_(tuningNotes).zip(p)).map (zipped) ->
-      [tNote, pNote] = zipped
-      return pNote.scaleDegree(tNote.scale("chromatic")) - 1
+  for permutNotes in permutations(chordNotes)
+    diff = for i in [0...tuningNotes.length]
+      tNote = tuningNotes[i]
+      pNote = permutNotes[i]
+      pNote.scaleDegree(tNoteScales[i]) - 1
     
     diffNoZeros = _(diff).compact()
     if diffNoZeros.length > 0
