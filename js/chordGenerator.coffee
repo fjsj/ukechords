@@ -46,4 +46,4 @@ fretsVars = _(fretsVars).sortBy (fret) ->
   fingerDist = _(fret).max() - _(_(fret).compact()).min()
   return fretMax * 0.7 + fingerSum * 0.1 + fingerDist * 0.2
 
-console.log _(fretsVars).uniq((fs) -> fs.toString())
+console.log _(fretsVars).uniq((fs) -> fs.join(""))
