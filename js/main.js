@@ -6,7 +6,6 @@ $(document).ready(function () {
   var currentChord = "C";
   var currentAlternative = 0;
   var chordAlternatives = [];
-  var keysLen = _(ChordDict).keys().length;
   var drawChord = function () {
     ChordDrawer.drawChord(ctx, currentChord, chordAlternatives[currentAlternative]);
   };
