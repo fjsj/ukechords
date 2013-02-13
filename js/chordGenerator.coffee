@@ -1,5 +1,3 @@
-
-
 permutations = (input) ->
   used = []
   permArr = []
@@ -20,21 +18,26 @@ chord = "Cmaj7"
 tuningNotes = (teoria.note(n) for n in tuning)
 chordNotes = teoria.chord(chord, 4).notes
 
-for p in permutations(chordNotes)
-  diff = _(_.zip(tuningNotes, p)).map (zipped) ->
+# Find all chord combinations, ignoring those with a fret distance >= 4
+fretsVars = for p in permutations(chordNotes)
+  diff = _(_(tuningNotes).zip(p)).map (zipped) ->
     [tNote, pNote] = zipped
     return pNote.scaleDegree(tNote.scale("chromatic")) - 1
   
-  diffNoZeros = _.compact(diff)
+  diffNoZeros = _(diff).compact()
   if diffNoZeros.length > 0
     if _(diffNoZeros).max() - _(diffNoZeros).min() < 4
-      console.log _(p).map((x) -> return x.name)
-      console.log diff
+      diff
+    else
+      null
   else
-    console.log _(p).map((x) -> return x.name)
-    console.log diff
+    diff
 
+# Sort by some heuristics which define how easy is to perform the chord
+fretsVars = _(_.compact(fretsVars)).sortBy (fret) ->
+  fretMax = _(fret).max()
+  fingerSum = (fret).reduce(((memo, num) -> return memo + (if num == 0 then 0 else 1)), 0)
+  fingerDist = _(fret).max() - _(_(fret).compact()).min()
+  return fretMax * 0.7 + fingerSum * 0.1 + fingerDist * 0.2
 
-  
-
-  
+console.log fretsVars
