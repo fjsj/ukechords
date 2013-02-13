@@ -43,6 +43,9 @@ window.ChordGenerator = do () ->
         else
           fretsVars.push(diff)
 
+    # Ignore invalid variations
+    fretsVars = _(fretsVars).reject (fret) -> _(fret).contains(-1)
+
     # Sort variations by some heuristics which define how easy is to perform the chord
     fretsVars = _(fretsVars).sortBy (fret) ->
       fretMax = _(fret).max()
@@ -51,7 +54,7 @@ window.ChordGenerator = do () ->
       return fretMax * 0.7 + fingerSum * 0.1 + fingerDist * 0.2
 
     # Return frets variations of the chord, ignoring repetitions
-    return _(fretsVars).uniq(true, (fs) -> fs.join(""))
+    return _(_(fretsVars).map((fret) -> fret.join(""))).uniq(true)
 
   return {
     frets: frets

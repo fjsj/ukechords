@@ -3,32 +3,32 @@ $(document).ready(function () {
   var ctx = canvas.getContext('2d');
   ctx.translate(0.5, 0.5);  // "disable" anti-aliasing. See: http://stackoverflow.com/a/3279863/145349
   var $input = $("input#chord-input");
+  var currentChord = "C";
   var currentAlternative = 0;
   var chordAlternatives = [];
   var keysLen = _(ChordDict).keys().length;
-  var drawChord = function (chord) {
-    ChordDrawer.drawChord(ctx, chord, ChordDict[chord]);
+  var drawChord = function () {
+    ChordDrawer.drawChord(ctx, currentChord, chordAlternatives[currentAlternative]);
   };
   var drawUnknown = function () {
     ChordDrawer.drawUnknown(ctx);
   };
 
-  $input.val("C");
+  $input.val(currentChord);
   $input.on("keyup change", function () {
     var chord = $input.val();
+    currentChord = chord;
+    currentAlternative = 0;
+    try {
+      chordAlternatives = ChordGenerator.frets(chord);
+      // For now, ignore alternatives with frets larger than 10
+      chordAlternatives = _(chordAlternatives).reject(function(alt) { return alt.length > 4; });
+    } catch (e) {
+      chordAlternatives = [];
+    }
     
-    if (_(ChordDict).has(chord)) {
-      chordAlternatives = [chord];
-      for (var i = 1; i < keysLen ; i++) {
-        var chordAlt = chord + "." + i;
-        if (_(ChordDict).has(chordAlt)) {
-          chordAlternatives.push(chordAlt);
-        } else {
-          break;
-        }
-      }
-      
-      drawChord(chord);
+    if (chordAlternatives.length > 0) {
+      drawChord();
     } else {
       drawUnknown();
     }
