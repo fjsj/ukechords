@@ -41,9 +41,12 @@ window.ChordGenerator = do () ->
             degree
           else
             # Invalid degree (negative fret). Try all pNote enharmonics and get the min degree.
-            enDegrees = (pNoteEn.scaleDegree(tNoteScales[i]) - 1 for pNoteEn in pNote.enharmonics())
+            enDegrees = for pNoteEn in pNote.enharmonics()
+              try
+                pNoteEn.scaleDegree(tNoteScales[i]) - 1
+              catch e
+                -1
             _(enDg for enDg in enDegrees when enDg >= 0).min()
-            # TODO: for some reason, the two lines above introduce an error for the chord Cm7
         
         diffNoZeros = _(diff).compact()
         if diffNoZeros.length > 0
