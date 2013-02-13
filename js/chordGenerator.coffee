@@ -32,9 +32,18 @@ window.ChordGenerator = do () ->
         diff = for i in [0...tuningNotes.length]
           tNote = tuningNotes[i]
           pNote = permutNotes[i]
-          pNote.scaleDegree(tNoteScales[i]) - 1  # find the degree in the scale of the tuning.
+          
+          # Find the degree in the scale of the tuning.
           # Each degree corresponds to the a fret.
           # All of them will be stored in diff variable, in tuning order.
+          degree = pNote.scaleDegree(tNoteScales[i]) - 1
+          if degree >= 0
+            degree
+          else
+            # Invalid degree (negative fret). Try all pNote enharmonics and get the min degree.
+            enDegrees = (pNoteEn.scaleDegree(tNoteScales[i]) - 1 for pNoteEn in pNote.enharmonics())
+            _(enDg for enDg in enDegrees when enDg >= 0).min()
+            # TODO: for some reason, the two lines above introduce an error for the chord Cm7
         
         diffNoZeros = _(diff).compact()
         if diffNoZeros.length > 0

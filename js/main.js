@@ -24,6 +24,7 @@ $(document).ready(function () {
       // For now, ignore alternatives with frets larger than 10
       chordAlternatives = _(chordAlternatives).reject(function(alt) { return alt.length > 4; });
     } catch (e) {
+      console.log(e);
       chordAlternatives = [];
     }
     
