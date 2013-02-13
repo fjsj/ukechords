@@ -1,4 +1,4 @@
-window.ChordGenerator = do () ->
+window.ChordGenerator = do ->
   permutations = (input) ->
     used = []
     permArr = []
@@ -61,7 +61,7 @@ window.ChordGenerator = do () ->
     # Sort variations by some heuristics which define how easy is to perform the chord
     fretsVars = _(fretsVars).sortBy (fret) ->
       fretMax = _(fret).max()
-      fingerSum = (fret).reduce(((memo, num) -> return memo + (if num == 0 then 0 else 1)), 0)
+      fingerSum = (fret).reduce(((memo, num) -> memo + (if num == 0 then 0 else 1)), 0)
       fingerDist = _(fret).max() - _(_(fret).compact()).min()
       return fretMax * 0.7 + fingerSum * 0.1 + fingerDist * 0.2
 
